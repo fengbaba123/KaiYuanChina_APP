@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/yaoyiyao_text"
+    android:layout_centerInParent="true"
+    android:textSize="20sp"
+    android:text="摇一摇获取资讯"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+  <LinearLayout
+      android:id="@+id/yaoyiyao_lin"
+      android:background="@color/colorAccent"
+      android:layout_centerInParent="true"
+      android:layout_below="@id/yaoyiyao_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      <ImageView
+          android:id="@+id/yaoyiyao_head"
+          android:layout_width="50dp"
+          android:layout_height="50dp" />
+      <TextView
+          android:layout_gravity="center_vertical"
+          android:id="@+id/yaoyiyao_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+  </LinearLayout>
+
+
+</RelativeLayout>

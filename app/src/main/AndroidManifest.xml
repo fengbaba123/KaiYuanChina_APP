@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.jiyun.txl.kaiyuanchina_app">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_china"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Activity.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.KaiYuanActivity"/>
+        <activity android:name=".Activity.SouSuoActivity"/>
+        <activity android:name=".Activity.LoginActivity"/>
+        <activity android:name=".Activity.WebActivity"/>
+        <activity android:name=".Activity.XianXiaHuoDong"/>
+        <activity android:name=".Activity.DongTanXiangQingActivity"/>
+        <activity android:name=".Activity.FaBiaoDongTanActivity"/>
+        <activity android:name=".Activity.DrawActivity"/>
+        <activity android:name=".Activity.ZongHeWebActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".Activity.SSActivity"></activity>
+        <activity android:name=".Activity.YaoYiYaoActivity"/>
+        <activity android:name=".Fragment.SecondActivity"/>
+        <activity android:name=".Activity.EWMaActivity">
+        </activity>
+    </application>
+
+</manifest>

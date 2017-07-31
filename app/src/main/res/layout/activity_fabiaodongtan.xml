@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/include_actionbar"></include>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/fabiaodongtan_Fasong"
+                android:layout_marginRight="10dp"
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:textColor="#fff"
+                android:text="发送"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <EditText
+        android:hint="今天想动弹什么"
+        android:gravity="center_vertical"
+        android:id="@+id/fabiaodongtan_ed"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/fabiaodongtan_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/fabiaodongtan_xuanze"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/compose_toolbar_picture_normal"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+</LinearLayout>

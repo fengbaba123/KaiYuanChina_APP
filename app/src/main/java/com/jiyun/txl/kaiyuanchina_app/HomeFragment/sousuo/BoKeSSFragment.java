@@ -1,0 +1,115 @@
+package com.jiyun.txl.kaiyuanchina_app.HomeFragment.sousuo;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.androidkun.PullToRefreshRecyclerView;
+import com.androidkun.adapter.BaseAdapter;
+import com.androidkun.adapter.ViewHolder;
+import com.jiyun.txl.kaiyuanchina_app.Base.BaseFragment;
+import com.jiyun.txl.kaiyuanchina_app.Modle.https.CallBack.MyCallback;
+import com.jiyun.txl.kaiyuanchina_app.Modle.https.bean.QueryBean;
+import com.jiyun.txl.kaiyuanchina_app.Modle.https.httpss.HttpFactory;
+import com.jiyun.txl.kaiyuanchina_app.R;
+import com.jiyun.txl.kaiyuanchina_app.Utils.Utils;
+import com.thoughtworks.xstream.XStream;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+import static android.content.Context.MODE_PRIVATE;
+
+/**
+ * 这个是搜索的博客显示结果
+ */
+
+public class BoKeSSFragment extends BaseFragment {
+    @Bind(R.id.kaiyuanzixun_pullView)
+    PullToRefreshRecyclerView kaiyuanzixunPullView;
+    private SharedPreferences sharedPreferences;
+
+    @Override
+    protected int getlayout() {
+        return R.layout.kaiyuanzixun;
+    }
+
+    @Override
+    protected void initView(View view) {
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
+        kaiyuanzixunPullView.setLayoutManager(manager);
+        sharedPreferences = getActivity().getSharedPreferences("data", MODE_PRIVATE);
+        Map<String, String> map = new HashMap<>();
+        map.put("catalog", "blog");
+        map.put("content", sharedPreferences.getString("sousuo", ""));
+        Log.e("kankan1",sharedPreferences.getString("sousuo", "")+"ha");
+        map.put("pageIndex", "0");
+        map.put("pageSize", "20");
+        HttpFactory.getFactory().Get(Utils.SOUSUO, map, new MyCallback() {
+            @Override
+            public void successful(String body) {
+                XStream xStream = new XStream();
+                xStream.alias("oschina", QueryBean.class);
+                xStream.alias("result", QueryBean.ResultBean.class);
+                QueryBean queryBean = (QueryBean) xStream.fromXML(body);
+                List<QueryBean.ResultBean> results = queryBean.getResults();
+                kaiyuanzixunPullView.setAdapter(new MypullAdapter(
+                        getActivity().getApplicationContext(), results
+                ));
+            }
+
+            @Override
+            public void failure(String errorMessage) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void listener() {
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    class MypullAdapter extends BaseAdapter<QueryBean.ResultBean> {
+
+        public MypullAdapter(Context context, List<QueryBean.ResultBean> datas) {
+            super(context, R.layout.item_tuijian, datas);
+        }
+
+        @Override
+        public void convert(ViewHolder holder, QueryBean.ResultBean resultBean) {
+            holder.setText(R.id.tv_title,resultBean.getTitle());
+            holder.setText(R.id.tv_body,resultBean.getDescription());
+
+        }
+    }
+}

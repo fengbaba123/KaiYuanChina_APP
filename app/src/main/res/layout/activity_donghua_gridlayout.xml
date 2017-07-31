@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <com.jiyun.txl.kaiyuanchina_app.Fragment.MyGridView
+        android:id="@+id/dragable_myGridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/tv_shape"
+        android:gravity="center"
+        android:text="点击添加条目" />
+
+    <com.jiyun.txl.kaiyuanchina_app.Fragment.MyGridView
+        android:id="@+id/dis_dragable_myGridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
